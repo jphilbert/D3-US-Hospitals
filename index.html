@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="icon" 
+      type="image/png" 
+      href="/common/image/jh_50x50.png">
+
+<title>Hospital Voroni</title>
+
+<style>
+
+ h1 {
+   font-size: 15px;
+   margin: 0;
+   padding: 0;
+ }
+
+ div.title {
+   font-family: 'Roboto', sans-serif;
+   font-size: 40px;
+   padding-bottom: 60px;
+   font-weight: bold;
+ }
+ div.disclaimer {
+   font-family: 'Droid Serif', serif;
+   font-style: italic;
+   padding: 10px;
+   width: 80%;
+   font-size: 11px;
+ }
+ 
+ path {
+   stroke-linejoin: round;
+ }
+
+ .land {
+   fill: #ddd;
+ }
+
+ .states {
+   fill: none;
+   stroke: #fff;
+ }
+
+ .voronoi {
+   fill: none;
+   stroke: brown;
+   stroke-width: .5px;
+ }
+
+ div.tooltip {
+   color: #222; 
+   background: #fff; 
+   padding: .5em; 
+   text-shadow: #f5f5f5 0 1px 0;
+   border-radius: 2px; 
+   box-shadow: 5px 5px 20px 0px black; 
+   opacity: 0.9; 
+   position: absolute;
+   z-index: 100;
+ }
+
+ html, body {
+   margin:0;
+   padding:0;
+   border:0; 
+   height:100%; 
+   min-height:100%; 
+ }
+
+
+ .controlTitle {
+   font-family: 'Roboto', sans-serif;
+   font-size: 20px;
+   padding-bottom: 10px;
+   padding-top: 10px;
+   font-weight: bold;
+ }
+ .controlInfo {
+   padding-bottom: 10px;
+ }
+ 
+</style>
+
+<link rel="stylesheet" href="Layout.css" type="text/css">
+
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Roboto' rel='stylesheet' type='text/css'>
+
+
+<!-- jquery -->
+<script src="/common/js/jquery/jquery-2.0.3.min.js"></script>
+
+
+<!-- jqueryUI -->
+<script src="/common/js/jquery/ui/jquery-ui.js"></script>
+<link rel="stylesheet"
+      href="/common/js/jquery/themes/redmond/jquery-ui.css" />
+
+
+<!-- underscore -->
+<script src="/common/js/underscore/underscore-min.js"></script>
+
+<!-- d3 -->
+<script src="/common/js/d3/d3.min.js"></script>
+<script src="/common/js/queue/queue.min.js"></script>
+<script src="/common/js/topojson/topojson.js"></script>
+
+<body>
+
+  <div class="tooltip hidden" style="left:462px;top:-94px"></div>
+  
+  <div class="wrapper">
+    <div class="header">
+<div style="width: 200; float: left">
+
+    <a href="https://www.john-hilbert.com/">
+<img src="/common/image/jh_logo_200x76_color.png"
+		 alt="John Hilbert" 
+		 style="padding: 10px 25px 0 0"></a>
+</div>
+<div>
+	 <div class="title">
+	   <div style="float:left;">
+		U.S. Hospitals
+	   </div>
+	   
+	   <div style="width: 300px;
+		float: right;
+		   text-align: right;
+		   font-size: 12px;">
+		<button id="button-help">How to Use</button>
+		<button id="button-data">About the Data</button>
+	   </div>
+	 </div>
+	 <div>
+	   This is an interactive  <a
+		href="https://en.wikipedia.org/wiki/Voronoi_diagram"
+		target="_new">voronoi diagram</a> of U.S. hospitals. This is strictly
+	   for demonstration purposes of the open-source
+	   <a href="https://d3js.org/" target="_new">d3</a> framework for
+		 interactive web visualization.  For more information please contact
+	   me, 
+	   <a href="https://www.john-hilbert.com/contact-me/"
+		 target="_top">John P. Hilbert</a>.  </div>
+</div>
+	   
+    </div><!-- .header-->
+
+    <div class="middle">
+
+	 <div class="container">
+	   <div class="content">
+		<div id = "svg" style = "padding: 10px"></div>
+	   </div><!-- .content-->
+	 </div><!-- .container-->
+
+	 <div class="left-sidebar">
+	 </div><!-- .left-sidebar -->
+
+	 <div class="right-sidebar">
+	   <div class="controlTitle">Hosptital</div>
+	   <div class="controlInfo" id = "name"></div>
+
+	   <div class="controlTitle">Address</div>
+	   <div class="controlInfo" id = "address"></div>
+
+	   <div class="controlTitle">City</div>
+	   <div class="controlInfo" id = "city"></div>
+
+	   <div class="controlTitle">State</div>
+	   <div class="controlInfo" id = "state"></div>
+
+	   <div class="controlTitle">Emergency</div>
+	   <div class="controlInfo" id = "emergency"></div>
+
+	   <div class="controlTitle">Type</div>
+	   <div class="controlInfo" id = "type"></div>
+
+	   <div class="controlTitle">Ownership</div>
+	   <div class="controlInfo" id = "ownership"></div>
+	   </div>
+	 
+	   
+	 </div><!-- .right-sidebar -->
+
+    </div><!-- .middle-->
+
+  </div><!-- .wrapper -->
+
+</body>
+
+<!-- Dialogs -->
+
+<div id="dialog-help" title="How to Use">
+  <p><strong>Click</strong> a region for more information.</p>
+
+  <p>The visualization supports zooming via the <strong>mouse wheel</strong> and
+    panning via <strong>click-and-drag</strong></p> 
+</div>
+
+<div id="dialog-data" title="About the Data">
+  <p>The data was taken from <a
+  href="https://data.medicare.gov/Hospital-Compare/Hospital-General-Information/v287-28n3"
+  target="_new">Data.Medicare.gov</a></p>
+
+  <p>Due to the precision of a facility location some hospitals may not
+    show. </p> 
+</div>
+
+<script src="script/script.js"></script>
+<script src="script/controls.js"></script>
