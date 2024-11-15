@@ -3,7 +3,7 @@ This is a proof-of-concept using D3 to make a [voronoi tessellation](https://en.
 
 ![d3_hospital_voronoi.jpg](media/d3_hospital_voronoi.jpg "Screenshot")
 
-The HTML, CSS, JavaScript, and sample data are all included here for running on your own web server **or** you can simply view a hosted version on [my site here](https://www.john-hilbert.com/projects/hospital_voroni/index.html).
+The HTML, CSS, JavaScript, and sample data are all included here for running on your own web server **or** you can simply view a hosted version on [my site here](https://www.john-hilbert.com/projects/hospital_voronoi/index.html).
 
 In simplest terms, the chart divides the United States into regions in which every point is closest to a particular hospital. It can also be thought of as the non-overlapping area around a hospital as the radius tends to infinity as this [animation](https://en.wikipedia.org/wiki/Voronoi_diagram#/media/File:Voronoi_growth_euclidean.gif "Voronoi tessellation emerging by radial growth from points outward") demonstrates. Unfortunately this doesn't take into account roads and drive time, yet it still gives a great view of how much area a hospital is likely to service. A next step would be to overlay population and subsequently health acuity or disease burden.
 
