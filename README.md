@@ -10,7 +10,7 @@ In simplest terms, the chart divides the United States into regions in which eve
 
 
 ## How To Use
-[View on my site ](https://www.john-hilbert.com/projects/hospital_voroni/index.html)
+[View on my site](https://www.john-hilbert.com/projects/hospital_voronoi/index.html)
 
 Depending on the your window size, the map initially is centered around the Cleveland, Ohio area with parts of Michigan and Pennsylvania also visible. Panning and zooming can be done via **click-and-drag** and the **mouse wheel** respectively. **Clicking** on a region will show various information about the hospital.
 
